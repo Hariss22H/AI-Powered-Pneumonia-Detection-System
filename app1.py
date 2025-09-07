@@ -28,8 +28,17 @@ def get_gradcam_heatmap(model, img_array, layer_name="block5_conv3"):
 
     with tf.GradientTape() as tape:
         conv_output, preds = grad_model(img_array)
-        class_index = tf.argmax(preds[0])
-        loss = preds[:, class_index]
+        # Ensure preds is a tensor and not a list/tuple
+        if isinstance(preds, (list, tuple)):
+            preds = preds[0]
+        preds = tf.convert_to_tensor(preds)
+
+        # Handle binary sigmoid output shape (batch, 1) vs multi-class
+        if preds.shape.rank == 2 and preds.shape[-1] == 1:
+            loss = preds[:, 0]
+        else:
+            class_index = tf.argmax(preds[0])
+            loss = preds[:, class_index]
 
     grads = tape.gradient(loss, conv_output)
     pooled_grads = tf.reduce_mean(grads, axis=(0, 1, 2))
