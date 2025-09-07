@@ -4,6 +4,8 @@
 ## 📌 Project Overview
 This project implements a **deep learning-based pneumonia detection system** using **VGG16**. It classifies chest X-ray images into **normal** or **pneumonia** cases with an accuracy of **92%**. Additionally, it incorporates **Grad-CAM heatmaps** for explainability and aims to introduce **AI-powered automated report generation**.
 
+🔗 **Live Demo:** [Try it here](https://ai-powered-pneumonia-detection.streamlit.app/)  
+
 ## 🚀 Features
 - **Pneumonia Classification:** Identifies pneumonia from chest X-rays.
 - **Explainability with Grad-CAM:** Highlights affected lung regions.
