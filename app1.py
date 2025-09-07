@@ -10,8 +10,9 @@ from reportlab.lib.utils import ImageReader
 import datetime
 import os
 
-# ✅ Load the trained VGG16 model
-MODEL_PATH = r"C:\Users\Asus\OneDrive\Desktop\AICTE\pneumonia_model.h5"
+# ✅ Load the trained VGG16 model (relative path for deployment)
+DEFAULT_MODEL_PATH = os.path.join(os.path.dirname(__file__), "pneumonia_model.h5")
+MODEL_PATH = os.environ.get("MODEL_PATH", DEFAULT_MODEL_PATH)
 model = load_model(MODEL_PATH)
 
 # ✅ Function to preprocess the uploaded image
