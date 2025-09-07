@@ -1,7 +1,9 @@
 streamlit
 numpy
-opencv-python
+opencv-python-headless; platform_system=="Linux"
+opencv-python; platform_system=="Windows"
 tensorflow
 pillow
 reportlab
+
 
